@@ -1,0 +1,25 @@
+.admin-user{
+    margin-top: 80px;
+}
+
+.user-admin {
+    margin: 0px 20px;
+}
+
+.user-admin h2 {
+    margin-bottom: 20px;
+    font-size: 19px;
+}
+
+thead th {
+    width: 150px;
+}
+
+tbody tr td:last-child {
+    color: #44bd32;
+    font-size: 20px;
+}
+
+.form-user{
+    height: 450px;
+}

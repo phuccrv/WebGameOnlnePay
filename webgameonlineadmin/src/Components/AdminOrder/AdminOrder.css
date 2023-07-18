@@ -1,0 +1,86 @@
+
+.admin-order{
+  margin-top: 80px;
+}
+
+.order-order{
+    margin: 0px 20px;
+}
+
+.order-order h2{
+  margin-bottom: 20px;
+  font-size: 19px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 8px;
+    text-align: center;
+  }
+
+  th {
+    background-color: #f2f2f2;
+    text-align: center;
+  }
+
+  tr td{
+    border-bottom: 1px solid #ccc;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .approve-button {
+    padding: 4px 8px;
+    width: 100px;
+    border: none;
+    background-color: #4CAF50;
+    text-transform: none;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .approve-button:hover {
+    background-color: #45a049;
+  }
+
+  button{
+    margin-top: 0px;
+  }
+
+
+.btn-close-infor{
+  width: 100px;
+  font-size: 15px;
+  padding: 10px;
+  background-color: rgb(252, 129, 129);
+  border: none;
+  font-weight: bold;
+  float: right;
+  margin: 10px;
+}
+
+.box-infor{
+  margin: 20px 100px;
+}
+.table-infor{
+  margin-top: 20px;
+}
+
+.infor-text{
+  display: flex;
+}
+.infor-text p{
+  margin-left: 10px;
+}
+
+.table-product tr td:last-child{
+  font-size: 15px;
+}

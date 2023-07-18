@@ -1,0 +1,36 @@
+.login-all{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.login-box{
+    border: 2px solid #344a60;
+    border-radius: 5px;
+}
+
+.login-box p{
+    font-family: sans-serif;
+    font-size: 15px;
+}
+
+.login-box:hover{
+    border-color: #e67e22;
+    transition: 0.5s ease-in-out;
+}
+
+form label{
+    float: left;
+    margin-left: 20px;
+}
+
+form button{
+    cursor: pointer;
+}
+
+.title-have-account{
+    text-align: right;
+    margin-right: 20px;
+    text-decoration: underline;
+}
+

@@ -1,0 +1,87 @@
+
+.ProductDetail{
+    background-color: #1e272e;
+    height: 680px;
+}
+
+
+.back-and-name{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 50px;
+    color: white;
+}
+
+.back{
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}
+
+.back p{
+    padding: 0px 0px 0px 10px;
+}
+
+.back:hover{
+    color: #8c7ae6;
+}
+
+.name-game{
+    font-size: 60px;
+    word-spacing: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    margin-top: 100px;
+}
+
+.infor-game{
+    display: flex;
+    margin: 0px 0px 50px 50px;
+}
+
+.img-game img{
+    height: 400px;
+    width: 600px;
+    border-radius: 10px;
+}
+
+.infor-title{
+    background-color: #242e36;
+    margin: 0px 50px;
+    border-radius: 10px;
+    color: white;
+    height: 400px;
+    text-align: left;
+    padding: 10px 20px;
+}
+
+.price{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 150px;
+    background-color: #2e3942;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 25px;
+}
+
+.price a{
+    color: white;
+}
+
+.price a:hover{
+    color: #8c7ae6;
+}
+
+.Category{
+    padding: 10px 0px;
+}
+
+.ProductDetail{
+    margin-top: 50px;
+}
+
+

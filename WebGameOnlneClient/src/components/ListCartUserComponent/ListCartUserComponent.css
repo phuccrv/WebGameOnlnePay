@@ -1,0 +1,79 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+    color: white;
+}
+
+thead th {
+    border-bottom: 3px solid #ffffff;
+    padding: 0px 30px;
+}
+
+tbody tr {
+    border-bottom: 1px solid;
+    width: 50px;
+}
+
+tbody td img {
+    height: 100px;
+    width: 150px;
+    padding: 5px;
+    object-fit: cover;
+}
+
+tbody td:nth-child(3) {
+    font-size: 20px;
+}
+
+tbody td svg {
+    font-size: 20px;
+}
+
+.back-product{
+    margin: 20px 0px 0px 20px;
+}
+
+.back-product{
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.back-product:hover{
+    color: #8c7ae6;
+}
+
+.back-product p{
+    padding: 0px 10px;
+}
+
+.box-infor{
+    color: white;
+}
+
+form input{
+    border-radius: 5px;
+    height: 40px;
+    font-size: 18px;
+}
+
+.Listcart{
+    color: white;
+}
+
+.delete{
+    color: #f39c12;
+    cursor: pointer;
+}
+
+.ListCartUserComponent h1{
+    padding-top: 50px;
+}
+
+.total{
+    margin-top: 10px;
+    font-size: 20px;text-transform: uppercase;
+}
+

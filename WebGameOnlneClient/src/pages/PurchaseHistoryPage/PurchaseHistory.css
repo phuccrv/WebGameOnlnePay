@@ -1,0 +1,14 @@
+.PurchaseHistory{
+    display: flex;
+}
+
+.pageHistory{
+    background-color: #19232c;
+    height:100%;
+    min-height: 100vh;
+}
+
+.history {
+    display: flex;
+    align-items: flex-start;
+}

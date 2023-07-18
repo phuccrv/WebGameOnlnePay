@@ -1,0 +1,127 @@
+.content-title {
+    color: white;
+    margin-top: 60px;
+}
+
+.content-title h1 {
+    font-size: 60px;
+    margin-left: 10px;
+    text-align: left;
+}
+
+.content-title P {
+    font-size: 20px;
+    font-family: Verdana, Tahoma, sans-serif;
+    margin: 10px 0px 20px 10px;
+    text-align: left;
+}
+
+/* box-item */
+.box-item {
+    border-radius: 10px;
+    width: 220px;
+    height: 250px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 10px;
+    overflow-y: hidden;
+}
+
+.box-item a{
+    text-decoration: none;
+    color: white;
+    height: 160px;
+}
+
+.list-product {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-left: 10px;
+}
+
+.box-item img {
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.box-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+
+.box-title p {
+    padding: 10px 0px 0px 0px;
+    cursor: pointer;
+}
+
+.box-title p:first-child {
+    color: rgba(255, 255, 255, 0.418);
+}
+
+.box-dow {
+    height: 100px;
+    background-color: #141c23;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.title-dow p {
+    font-size: 25px;
+    width: 220px;
+    text-align: left;
+    padding: 0px 10px 10px 10px;
+}
+
+@media (max-width: 1200px) {
+    .list-product {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 960px) {
+    .content-title h1 {
+        font-size: 45px;
+    }
+}
+
+@media (max-width: 800px) {
+    .content-title h1 {
+        font-size: 39px;
+    }
+
+    .list-product {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .box-item {
+        width: 250px;
+        height: 215px;
+    }
+}
+
+@media (max-width: 428px) {
+    .content-title h1 {
+        font-size: 30px;
+        width: 330px;
+    }
+
+    .content-title p {
+        font-size: 20px;
+        width: 240px;
+    }
+
+    .list-product {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .box-item {
+        width: 240px;
+        height: 245px;
+        margin: 20px 0px;
+    }
+}

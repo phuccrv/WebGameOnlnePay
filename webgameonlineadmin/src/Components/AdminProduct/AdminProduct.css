@@ -1,0 +1,46 @@
+.admin-product{
+    margin-top: 80px;
+}
+
+.porduct-admin {
+    margin: 0px 20px;
+}
+
+.porduct-admin h2 {
+    margin-bottom: 20px;
+    font-size: 19px;
+}
+
+.btn-edit {
+    color: #0d99ff;
+    cursor: pointer;
+    margin: 0px 5px;
+}
+
+.btn-delete {
+    color: red;
+    cursor: pointer;
+}
+
+.btn-add {
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0px 5px 0px 0px;
+}
+
+tbody tr img {
+    height: 100px;
+    height: 100px;
+}
+
+.porduct-admin >p{
+    width: 100px;
+    height: 30px;
+    background-color: #0e466e;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
