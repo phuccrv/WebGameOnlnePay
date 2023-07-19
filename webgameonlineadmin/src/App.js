@@ -11,20 +11,51 @@ import LoginLayout from "./Layout/LoginLayout/LoginLayout";
 
 import Login from "./Components/Login/Login";
 import UpimageProduct from "./Components/AdminProduct/UpimageProduct";
+import RequiredAuth from "./Components/RequireAuth";
 
 function App() {
   return (
     <div className="App">
       <Routes>
         {/* authen */}
-        <Route path="/login" element={<LoginLayout><Login /></LoginLayout>}/>
+        <Route
+          path="/login"
+          index
+          element={
+            <LoginLayout>
+              <Login />
+            </LoginLayout>
+          }
+        />
         {/* home */}
-        <Route path="/" index element={ <AdminLayout> <Dashboard /> </AdminLayout>}  />
-        <Route path="/AdminPage" element={<AdminPage />} />
-        <Route path="/AdminProduct" element={<AdminProduct />} />
-        <Route path="/AdminOrder" element={<AdminOrder />} />
-        <Route path="/AdminUser" element={<AdminUser />} />
-        <Route path="/model" element={<UpimageProduct/>}/>
+        <Route element={<RequiredAuth />}>
+          <Route
+            path="/"
+            element={
+              <AdminLayout>
+                {" "}
+                <Dashboard />{" "}
+              </AdminLayout>
+            }
+          />
+        </Route>
+        <Route element={<RequiredAuth />}>
+          <Route path="/AdminPage" element={<AdminPage />} />
+        </Route>
+        <Route element={<RequiredAuth />}>
+          <Route path="/AdminProduct" element={<AdminProduct />} />
+        </Route>
+        <Route element={<RequiredAuth />}>
+          <Route path="/AdminOrder" element={<AdminOrder />} />
+        </Route>
+
+        <Route element={<RequiredAuth />}>
+          <Route path="/AdminUser" element={<AdminUser />} />
+        </Route>
+
+        <Route element={<RequiredAuth />}>
+          <Route path="/model" element={<UpimageProduct />} />
+        </Route>
       </Routes>
     </div>
   );
