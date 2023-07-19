@@ -19,6 +19,7 @@ const HeaderUserComponent = ({ onSearch,isUpdate }) => {
   const handleLogout = () => {
     localStorage.removeItem("userLogin");
     localStorage.removeItem("accessTokenRegister");
+    localStorage.removeItem("accessToken");
     localStorage.removeItem("token");
 
   };
