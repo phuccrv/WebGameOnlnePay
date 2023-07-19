@@ -14,12 +14,14 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import Loading from "../Loading/Loading";
 
+
 const ListCartUserComponent = () => {
   const [cartItems, setCartItems] = useState([]);
   const [isCartUpdated, setIsCartUpdated] = useState(true);
   const [fullname, setFullname] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+
   const [isLoad, setIsLoad] = useState(true); 
   const navigate = useNavigate();
 

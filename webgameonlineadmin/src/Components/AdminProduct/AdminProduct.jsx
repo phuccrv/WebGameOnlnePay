@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import "./AdminProduct.css";
 import AdminPage from "../../pages/AdminPage/AdminPage";
 import { BsPencilSquare, BsPlusSquare, BsTrash } from "react-icons/bs";
@@ -9,11 +11,13 @@ import UpimageProduct from "./UpimageProduct";
 import EditImageProduct from "./editImageProduct";
 
 
+
 const AdminProduct = () => {
   const [games, setGames] = useState([]);
   const [openform, setOpenForm] = useState(false);
   const [editForm, setEditForm] = useState(false);
   const [selectedGame, setSelectedGame] = useState(null);
+  
   useEffect(() => {
     fetchGames();
   }, []);
@@ -31,13 +35,41 @@ const AdminProduct = () => {
   // Xoá game
   const deleteProduct = async (idGame) => {
     try {
-      await axios.delete(`http://localhost:3000/api/v1/product/${idGame}`);
-      // Xoá thành công, và cập nhật lại danh sách game
-      fetchGames();
+      confirmAlert({
+        title: "Confirm delete",
+        message: "Are you sure you want to delete this product?",
+        buttons: [
+          {
+            label: "Xoá",
+            onClick: async () => {
+              try {
+                await axios.delete(`http://localhost:3000/api/v1/product/${idGame}`);
+                toast.success("Product deleted successfully!", {
+                  position: toast.POSITION.BOTTOM_RIGHT,
+                });
+                // Xoá thành công, và cập nhật lại danh sách game
+                fetchGames();
+              } catch (error) {
+                console.error(error);
+              }
+            },
+          },
+          {
+            label: "Hủy",
+            onClick: () => {
+              // Do nothing when canceled
+            },
+          },
+        ],
+      });
     } catch (error) {
       console.error(error);
+      toast.error("Lỗi khi xoá sản phẩm!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
   };
+
 
   const toggleForm = () => {
     setOpenForm(!openform);

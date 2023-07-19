@@ -8,7 +8,8 @@
 
 .porduct-admin h2 {
     margin-bottom: 20px;
-    font-size: 19px;
+    font-size: 25px;
+    text-transform: uppercase;
 }
 
 .btn-edit {

@@ -1,4 +1,5 @@
 const mysql = require('../../libs/database/connect.mysql');
+const sendRegistrationEmail = require('./mail.controller')
 
 class productController {
   // lấy tất cả game
@@ -182,6 +183,7 @@ class productController {
             }
 
             res.status(200).json({ message: 'Thêm thông tin vào bảng payment thành công' });
+            sendRegistrationEmail(email)
           });
         });
       });
@@ -303,6 +305,23 @@ class productController {
       }
     });
   }
+
+
+  // lấy danh sách order
+  getOrder(req, res) {
+    const query = 'SELECT * FROM payment_detail'; // lấy danh sách order
+    mysql.query(query, (err, result) => {
+      if (err) {
+        console.error('Error fetching payment details:', err);
+        res.status(500).json({ error: 'Error fetching payment details' });
+      } else {
+        console.log(result); // In ra kết quả truy vấn trong terminal (tùy chọn)
+        res.status(200).json({ data: result }); // Trả về kết quả
+      }
+    });
+  }
+
+
 }
 
 module.exports = new productController();
