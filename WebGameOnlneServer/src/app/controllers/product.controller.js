@@ -211,7 +211,7 @@ class productController {
   // xoá sản phẩm trang admin
   deleteGame(req, res) {
     const { idGame } = req.params;
-  
+
     const deleteQuery = `
       DELETE game, cart, orderitem, image
       FROM game
@@ -220,53 +220,89 @@ class productController {
       LEFT JOIN image ON game.idGame = image.game_id
       WHERE game.idGame = ?
     `;
-  
+
     mysql.query(deleteQuery, [idGame], (err, result) => {
       if (err) {
         console.error(err);
         return res.status(500).json({ error: 'Lỗi server' });
       }
-  
+
       if (result.affectedRows === 0) {
         return res.status(404).json({ error: 'Sản phẩm không tồn tại' });
       }
-  
+
       res.status(200).json({ message: 'Xóa sản phẩm thành công' });
     });
   }
-// thêm mới game
-postGame(req, res) {
-  try {
-    const { title, description, price, releasedate, category } = req.body;
+  // thêm mới game
+  postGame(req, res) {
+    try {
+      const { title, description, price, releasedate, category } = req.body;
 
-    const insertGameQuery = 'INSERT INTO game (title, description, price, releasedate, category) VALUES (?, ?, ?, ?, ?)';
+      const insertGameQuery =
+        'INSERT INTO game (title, description, price, releasedate, category) VALUES (?, ?, ?, ?, ?)';
 
-    mysql.query(insertGameQuery, [title, description, price, releasedate, category], (err, gameResult) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).json({ error: 'Lỗi server' });
-      }
-
-      const gameId = gameResult.insertId;
-
-      const { imageUrl } = req.body;
-
-      const insertImageQuery = 'INSERT INTO image (game_id, url) VALUES (?, ?)';
-
-      mysql.query(insertImageQuery, [gameId, imageUrl], (err) => {
+      mysql.query(insertGameQuery, [title, description, price, releasedate, category], (err, gameResult) => {
         if (err) {
           console.error(err);
           return res.status(500).json({ error: 'Lỗi server' });
         }
 
-        res.status(201).json({ message: 'Thêm sản phẩm thành công' });
+        const gameId = gameResult.insertId;
+
+        const { imageUrl } = req.body;
+
+        const insertImageQuery = 'INSERT INTO image (game_id, url) VALUES (?, ?)';
+
+        mysql.query(insertImageQuery, [gameId, imageUrl], (err) => {
+          if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Lỗi server' });
+          }
+
+          res.status(201).json({ message: 'Thêm sản phẩm thành công' });
+        });
       });
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Lỗi server' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Lỗi server' });
+    }
   }
-}
+
+  patchGame(req, res) {
+    const { idGame } = req.params;
+    const { title, description, price, releasedate, category, imageUrl } = req.body;
+
+    const sqlUpdateGame = `
+      UPDATE game
+      SET title = ?, description = ?, price = ?, releasedate = ?, category = ?
+      WHERE idGame = ?
+    `;
+
+    const sqlUpdateImage = `
+      UPDATE image
+      SET url = ?
+      WHERE game_id = ?
+    `;
+
+    // Thực hiện truy vấn SQL
+    mysql.query(sqlUpdateGame, [title, description, price, releasedate, category, idGame], (err, result) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal Server Error' });
+      } else {
+        // Nếu cập nhật game thành công, tiếp tục cập nhật thông tin của image
+        mysql.query(sqlUpdateImage, [imageUrl, idGame], (err, result) => {
+          if (err) {
+            console.error(err);
+            res.status(500).json({ message: 'Internal Server Error' });
+          } else {
+            res.status(200).json({ message: 'Game and Image updated successfully' });
+          }
+        });
+      }
+    });
+  }
 }
 
 module.exports = new productController();

@@ -13,4 +13,5 @@ router.get('/payment/:id', ProductController.getAllPaymentDetails);
 router.post('/admin/login', AdminController.loginAdmin);
 router.delete('/:idGame', ProductController.deleteGame);
 router.post('/post-game', ProductController.postGame);
+router.patch('/edit-game/:idGame', ProductController.patchGame)
 module.exports = router;

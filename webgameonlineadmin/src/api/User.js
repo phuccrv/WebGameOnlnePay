@@ -8,7 +8,7 @@ export class userAPI {
   }
 
   static getAllImages() {
-    const url = "http://localhost:3000/api/v1/image/get-image";
+    const url = "/api/v1/image/get-image";
     return axiosClient.get(url);
   }
 }

@@ -10,7 +10,7 @@ function RequiredAuth() {
   return hasToken && hasToken !== "" && hasToken !== null ? (
     <Outlet />
   ) : (
-    <Navigate to="/login" replace />
+    <Navigate to="/auth/login" replace />
   );
 }
 

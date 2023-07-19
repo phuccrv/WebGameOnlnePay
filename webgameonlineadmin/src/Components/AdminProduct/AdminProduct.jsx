@@ -6,11 +6,14 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UpimageProduct from "./UpimageProduct";
+import EditImageProduct from "./editImageProduct";
+
 
 const AdminProduct = () => {
   const [games, setGames] = useState([]);
   const [openform, setOpenForm] = useState(false);
-  const [editGame, setEditGame] = useState(null);
+  const [editForm, setEditForm] = useState(false);
+  const [selectedGame, setSelectedGame] = useState(null);
   useEffect(() => {
     fetchGames();
   }, []);
@@ -44,9 +47,16 @@ const AdminProduct = () => {
     setOpenForm(false);
   };
 
-  const handleEdit = (game) => {
-    setEditGame(game);
-    setOpenForm(true);
+  const handleExit =() => {
+    setEditForm(false);
+  };  
+  const FormEdit = (game) => {
+    setSelectedGame(game);
+    setEditForm(!editForm);
+  };
+
+  const reloadProducts = () => {
+    fetchGames();
   };
 
   return (
@@ -54,7 +64,10 @@ const AdminProduct = () => {
       <AdminPage />
       <div className="porduct-admin">
         <h2>Danh sách sản phẩm</h2>
-        <p onClick={toggleForm}><BsPlusSquare className="btn-add" />Add Game</p>
+        <p onClick={toggleForm}>
+          <BsPlusSquare className="btn-add" />
+          Add Game
+        </p>
         <table>
           <thead>
             <tr>
@@ -75,7 +88,11 @@ const AdminProduct = () => {
                   <img src={game.url} alt="" />
                 </td>
                 <td>
-                  <BsPencilSquare className="btn-edit" handleEdit={handleEdit}/>
+                  <BsPencilSquare
+                    className="btn-edit"
+                    onClick={() => FormEdit(game)}
+                  />
+
                   <BsTrash
                     className="btn-delete"
                     onClick={() => deleteProduct(game.idGame)}
@@ -86,7 +103,8 @@ const AdminProduct = () => {
           </tbody>
         </table>
       </div>
-      {openform && <UpimageProduct handleClose={handleClose} editGame={editGame}/>}
+      {openform && <UpimageProduct handleClose={handleClose} reloadProducts={reloadProducts} />}
+      {editForm && <EditImageProduct handleExit={handleExit} selectedGame={selectedGame} handleClose={handleClose} reloadProducts={reloadProducts}/> }
       <ToastContainer />
     </div>
   );

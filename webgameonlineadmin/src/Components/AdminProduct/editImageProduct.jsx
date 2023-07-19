@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import axiosClient from "../../api/axiosClient";
 import { userAPI } from "../../api/User";
-import { useNavigate } from "react-router-dom";
 import "./UpimageProduct.css";
 
-const UpimageProduct = ({ handleClose ,reloadProducts}) => {
+const EditImageProduct = ({
+  handleExit,
+  selectedGame,
+  handleClose,
+  reloadProducts,
+}) => {
   const [imgServer, setImgServer] = useState("");
   const [allImages, setAllImages] = useState([]);
-  
   const [formData, setFormData] = useState({
     title: "",
     price: "",
@@ -18,17 +21,19 @@ const UpimageProduct = ({ handleClose ,reloadProducts}) => {
     images: "",
   });
 
-  const fetchAllImages = async () => {
-    try {
-      const response = await userAPI.getAllImages();
-      setAllImages(response.data.data);
-    } catch (error) {
-      console.error("Error retrieving data: ", error);
-    }
-  };
   useEffect(() => {
-    fetchAllImages();
-  }, []);
+    if (selectedGame) {
+      setFormData({
+        title: selectedGame.title,
+        price: selectedGame.price,
+        category: selectedGame.category,
+        description: selectedGame.description,
+        releasedate: selectedGame.releasedate,
+        images: selectedGame.imageUrl,
+      });
+      setImgServer(selectedGame.imageUrl);
+    }
+  }, [selectedGame]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,8 +49,9 @@ const UpimageProduct = ({ handleClose ,reloadProducts}) => {
       releasedate: dataFromPost.releasedate,
       imageUrl: dataFromPost.linkImage,
     };
+    console.log(newImage);
     axiosClient
-      .post("/api/v1/post-game", newImage)
+      .patch(`/api/v1/edit-game/${selectedGame.idGame}`, newImage)
       .then((response) => {
         setFormData({
           title: "",
@@ -56,13 +62,12 @@ const UpimageProduct = ({ handleClose ,reloadProducts}) => {
           images: "",
         });
         console.log(response.data);
-        handleClose();
         reloadProducts();
+        handleExit();
       })
       .catch((error) => {
         console.error(error);
       });
-    fetchAllImages();
   };
 
   const handleInputChange = (event) => {
@@ -73,6 +78,7 @@ const UpimageProduct = ({ handleClose ,reloadProducts}) => {
     }));
   };
   const handleImageChange = (event) => {
+    console.log(event.target);
     const file = event.target.files[0];
     if (!file) return;
     // lấy hình ảnh được post lên bằng Multer
@@ -85,7 +91,7 @@ const UpimageProduct = ({ handleClose ,reloadProducts}) => {
       },
     })
       .then((data) => {
-        console.log("Admin thêm ảnh", data);
+        console.log("Admin đã sửa ảnh", data);
         setImgServer(data.data.image);
       })
       .catch((err) => {
@@ -146,7 +152,7 @@ const UpimageProduct = ({ handleClose ,reloadProducts}) => {
             />
             <div className="btn-action">
               <button type="submit">Save</button>
-              <button className="cancel" onClick={handleClose}>
+              <button className="cancel" onClick={handleExit}>
                 Close
               </button>
             </div>
@@ -157,4 +163,4 @@ const UpimageProduct = ({ handleClose ,reloadProducts}) => {
   );
 };
 
-export default UpimageProduct;
+export default EditImageProduct;

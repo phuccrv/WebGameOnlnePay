@@ -10,7 +10,7 @@ axiosClient.interceptors.request.use(
       let token;
       try {
          const tokenJson = await localStorage.getItem("token");
-         token = JSON.parse(tokenJson);
+         token = await JSON.parse(tokenJson);
       } catch (e) { 
         console.log(e)
       }
