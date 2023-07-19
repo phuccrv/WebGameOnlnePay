@@ -79,6 +79,7 @@ const ListCartUserComponent = () => {
         progress: undefined,
         theme: "light",
       });
+      navigate("/")
     } catch (error) {
       console.error(error);
     }

@@ -4,7 +4,7 @@ const ProductController = require('../controllers/product.controller');
 const AdminController = require('../controllers/admin.controllerr');
 const UserController = require('../controllers/user.controller');
 router.get('/', ProductController.getAllGames);
-router.get('/:id', ProductController.getOneGame);
+router.get('/onegame/:id', ProductController.getOneGame);
 router.post('/cart', ProductController.addToCart);
 router.get('/cart-user/:id', ProductController.getDetailCartUser);
 router.delete('/cart/:idCart', ProductController.deleteDetailCartUser);
@@ -14,5 +14,5 @@ router.post('/admin/login', AdminController.loginAdmin);
 router.delete('/:idGame', ProductController.deleteGame);
 router.post('/post-game', ProductController.postGame);
 router.patch('/edit-game/:idGame', ProductController.patchGame)
-router.get('/get-all', ProductController.getOrder)
+router.get('/getorder', ProductController.getOrder)
 module.exports = router;

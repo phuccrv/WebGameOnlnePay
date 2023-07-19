@@ -84,3 +84,14 @@ table {
 .table-product tr td:last-child{
   font-size: 15px;
 }
+
+.total{
+  display: flex;
+ 
+}
+
+.total p{
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-collapse: collapse;
+}

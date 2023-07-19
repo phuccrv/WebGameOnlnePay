@@ -21,7 +21,7 @@ const ProductDetail = () => {
     console.log(id)
     try {
       const response = await axios(
-        `http://localhost:3000/api/v1/product/${id}`
+        `http://localhost:3000/api/v1/product/onegame/${id}`
       );
       setGame(response.data.data);
     } catch (error) {
